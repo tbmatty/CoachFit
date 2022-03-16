@@ -1,9 +1,5 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
+ * IMPORTS
  */
 
 import React from 'react';
@@ -12,70 +8,20 @@ import { NavigationContainer, TabActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
-  SafeAreaView,
-  ScrollView,
-  Button,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({ children, title }): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
 
 
-const ClientHomeTabs: () => Node = () => {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Todays Workout" component={ClientWorkoutScreen}></Tab.Screen>
-      <Tab.Screen name="Message Coach" component={ClientMessagingScreen}></Tab.Screen>
-      <Tab.Screen name="Account" component={ClientAccountScreen}></Tab.Screen>
-    </Tab.Navigator>
-  );
-}
-
-
-
+/**
+ *  SCREENS
+ */
 const ClientWorkoutScreen = ({ navigation }): Node => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
+      <Text>Workout Screen</Text>
     </View>
   );
 }
@@ -83,7 +29,7 @@ const ClientWorkoutScreen = ({ navigation }): Node => {
 const ClientMessagingScreen: () => Node = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Detail Screen</Text>
+      <Text>Messaging Screen</Text>
     </View>
   );
 }
@@ -97,15 +43,26 @@ const ClientAccountScreen: () => Node = () => {
 }
 
 
+
+
+/**
+ * NAVIGATION
+ */
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+const ClientHomeTabs: () => Node = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Todays Workout" component={ClientWorkoutScreen} options={{ headerShown: false }}></Tab.Screen>
+      <Tab.Screen name="Message Coach" component={ClientMessagingScreen} options={{ headerShown: false }}></Tab.Screen>
+      <Tab.Screen name="Account" component={ClientAccountScreen} options={{ headerShown: false }}></Tab.Screen>
+    </Tab.Navigator>
+  );
+}
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+const App: () => Node = () => {
 
   return (
     <NavigationContainer>
@@ -121,6 +78,10 @@ const App: () => Node = () => {
   );
 };
 
+
+/**
+ * STYLES
+ */
 const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
